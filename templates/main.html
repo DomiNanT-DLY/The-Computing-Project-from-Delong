@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+  <!--Head of the web page, to define the web title, device width & scale also to link up with the .js file-->
+  <head>
+    <title>Online Assistant</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/style.css') }}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  </head>
+  <!--Body of the web page-->
+  <body>
+    <!--Section: Online Assistant-->
+    <section id="online-assistant">
+      <!--Header pf the web page-->
+      <header class="online-assistant-header">
+        <div class="online-assistant-header-title">Student Online Assistant</div>
+      </header>
+      <!--Predefined first message bubble-->
+      <main class="online-assistant-first-message-bubble">
+        <div class="message left-message">
+          <div class="message-bubble">
+            <div class="message-info"><div class="message-info-name">|| Chatty ||</div></div>
+            <div class="message-text">Feel free to ask me any questions 😄</div>
+          </div>
+        </div>
+      </main>
+      <!--HTML Form: to allow user to input their questions in the input area-->
+      <form class="online-assistant-input-area">
+        <label for="textInput"></label><input type="text" class="online-assistant-input" id="textInput" placeholder="Type your message here...">
+        <button type="submit" class="online-assistant-send-button"><span>&#10148;</span></button>
+      </form>
+    </section>
+
+    <!--Javascript functions-->
+    <script>
+      // To define the visitor's name
+      const visitorName = "|| Me ||";
+      // To define the chatbot's name
+      const chatbotName = "|| Chatty ||";
+      // To define "onlineAssistantInput" as a variable from "online-assistant-input"
+      const onlineAssistantInput = get(".online-assistant-input");
+      // To define "onlineAssistantForm" as a variable from "online-assistant-input-area"
+      const onlineAssistantForm = get(".online-assistant-input-area");
+      // To define "onlineAssistantFirstBubble" as a variable from "online-assistant-first-message bubble"
+      const onlineAssistantFirstBubble = get(".online-assistant-first-message-bubble");
+      // To create an event listener for the "submit" button
+      onlineAssistantForm.addEventListener("submit", event => {
+        event.preventDefault();
+        const messageText = onlineAssistantInput.value;
+        if (!messageText) return;
+        addNewMessageBubble(visitorName, "right", messageText);
+        onlineAssistantInput.value = "";
+        chatbotResponse(messageText);
+      });
+      // Function: Add new message bubble to the HTML form
+      function addNewMessageBubble(name, side, text) {
+        const addNewMessageBubbleToHTML = `
+        <div class="message ${side}-message">
+        <div class="message-bubble">
+        <div class="message-info"><div class="message-info-name">${name}</div></div>
+        <div class="message-text">${text}</div></div></div>`;
+        // To insert new message bubble before the end of the element
+        onlineAssistantFirstBubble.insertAdjacentHTML("beforeend", addNewMessageBubbleToHTML);
+        onlineAssistantFirstBubble.scrollTop += 500;
+      }
+      // Function: call /get function from Chatty.py file to get responses from chatbot
+      function chatbotResponse(unprocessedText) {
+        $.get("/get", { chatbotMessage: unprocessedText }).done(function (data) {
+          // Once the response has been found, create a new message bubble towards left
+        addNewMessageBubble(chatbotName, "left", data);});
+      }
+      // Function: To get the first element from the query
+      function get(selector, root = document) {
+        return root.querySelector(selector);
+      }
+    </script>
+  </body>
+</html>

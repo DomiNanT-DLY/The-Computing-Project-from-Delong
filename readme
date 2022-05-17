@@ -1,0 +1,6 @@
+Libraries required to install before running the chatbot:
+    1) from tensorflow
+    2) from flask
+    3) from keras
+    4) from nltk
+    5) from numpy
