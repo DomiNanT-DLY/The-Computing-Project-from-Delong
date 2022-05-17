@@ -105,7 +105,7 @@ def get_bot_response():
 
 # Required by flask, to enable the flask app
 if __name__ == "__main__":
-    app.run()
+    app.run(host="0.0.0.0", port=5000)
     
 # Code below are for console debug only
 # To print a short message for user to know what to do
