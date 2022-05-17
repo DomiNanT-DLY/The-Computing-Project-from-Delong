@@ -106,7 +106,7 @@ def get_bot_response():
 # Required by flask, to enable the flask app
 if __name__ == "__main__":
     app.run()
-
+    
 # Code below are for console debug only
 # To print a short message for user to know what to do
 # print("Enter your questions below :)")

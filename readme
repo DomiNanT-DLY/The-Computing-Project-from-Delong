@@ -4,3 +4,7 @@ Libraries required to install before running the chatbot:
     3) from keras
     4) from nltk
     5) from numpy
+
+Due to Github's upload size limit, I can't upload the venv folder, which contains all the virtual environment related script, but it is not a big problem, 
+since you can reimport then.
+
