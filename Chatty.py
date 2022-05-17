@@ -107,18 +107,18 @@ def get_bot_response():
 if __name__ == "__main__":
     app.run()
 
-# Code below are for console only
+# Code below are for console debug only
 # To print a short message for user to know what to do
-print("Enter your questions below :)")
+# print("Enter your questions below :)")
 # To loop this function over and over again
-while True:
+# while True:
     # To store user input into a temporary variable called message
-    message = input("")
+    # message = input("")
     # To validate the user input, the following lines will only be activated when the user input are more than 1 letters
-    if len(message) > 1:
-        intents = predict_categories(message)
-        final_outcome = get_response(intents, all_intents)
-        print(final_outcome)
+    # if len(message) > 1:
+        # intents = predict_categories(message)
+        # final_outcome = get_response(intents, all_intents)
+        # print(final_outcome)
     # To validate the user input, if user input are less than 1 letter then the chatbot will display following message
-    else:
-        print("Sorry i dont understand... please try again")
+    # else:
+        # print("Sorry i dont understand... please try again")
